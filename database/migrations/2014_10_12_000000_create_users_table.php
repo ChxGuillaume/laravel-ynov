@@ -20,7 +20,6 @@ class CreateUsersTable extends Migration
             $table->string('live_id')->unique()->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
-            $table->boolean('hasPassword')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

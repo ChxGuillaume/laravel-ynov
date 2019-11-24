@@ -21,7 +21,7 @@
             <li><strong>Email</strong>: {{ $user->email }}</li>
         </ul>
 
-        @if (!$user->hasPassword)
+        @if (!$user->getAuthPassword())
             <a class="btn" href="{{ route('definePassword') }}">Create Password</a>
         @else
             <a class="btn" href="{{ route('reDefinePassword') }}">Edit Password</a>

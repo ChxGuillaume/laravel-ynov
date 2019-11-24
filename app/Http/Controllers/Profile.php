@@ -29,7 +29,7 @@ class Profile extends Controller
      */
     public static function DefinePassword() {
         if (!auth()->user()) return redirect()->route('home');
-        if (auth()->user()->hasPassword) return redirect()->route('profile');
+        if (auth()->user()->getAuthPassword()) return redirect()->route('profile');
 
         return view('define-password', ['user' => auth()->user()]);
     }
@@ -42,16 +42,13 @@ class Profile extends Controller
      */
     public static function DefinePasswordPost(Request $request) {
         if (!auth()->user()) return redirect()->route('home');
-        if (auth()->user()->hasPassword) return redirect()->route('profile');
+        if (auth()->user()->getAuthPassword()) return redirect()->route('profile');
 
         $password = $request->get('password');
         $passwordReap = $request->get('passwordReap');
 
         if (!is_null($password) & !is_null($passwordReap) & ($password === $passwordReap)) {
-            auth()->user()->fill([
-                'password' => Hash::make($password),
-                'hasPassword' => 1,
-            ])->save();
+            auth()->user()->fill(['password' => Hash::make($password)])->save();
 
             return redirect()->route('profile');
         }
@@ -85,10 +82,7 @@ class Profile extends Controller
 
         if (Hash::check($oldPassword, auth()->user()->getAuthPassword())
             & !is_null($password) & !is_null($passwordReap) & ($password === $passwordReap)) {
-            auth()->user()->fill([
-                'password' => Hash::make($password),
-                'hasPassword' => 1,
-            ])->save();
+            auth()->user()->fill(['password' => Hash::make($password)])->save();
 
             return redirect()->route('profile');
         }
