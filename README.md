@@ -28,20 +28,20 @@ Generate jwt secret key:
 
 > php artisan jwt:secret
 
-Setup you're database as you want in you're **.env** file and then run:
+Setup your database as you want in your **.env** file and then run:
 
 > php artisan migrate:fresh
 
-Then go to you're
+Then go to your
 [Microsoft Azure Application](https://portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RegisteredApps)
-and copy paste the Client-ID and Secret to the corresponding keys in you're **.env** file
+and copy paste the Client-ID and Secret to the corresponding keys in your **.env** file
 (***LIVE_KEY*** and ***LIVE_SECRET***).
 
 Note: You can't create a Microsoft Graph application throw your Ynov mail account.
 
 ## 💾 Setup a sqlite database
 
-In you're **.env** file replace
+In your **.env** file replace
 
 | From | To |
 | --- | --- |
