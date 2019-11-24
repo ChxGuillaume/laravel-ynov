@@ -42,6 +42,7 @@ Note: You can't create a Microsoft Graph application throw your Ynov mail accoun
 ## 💾 Setup a sqlite database
 
 In you're **.env** file replace
+
 | From | To |
 | --- | --- |
 | `DB_CONNECTION=mysql` | `DB_CONNECTION=sqlite` |
