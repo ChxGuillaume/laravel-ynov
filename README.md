@@ -42,10 +42,11 @@ Note: You can't create a Microsoft Graph application throw your Ynov mail accoun
 ## 💾 Setup a sqlite database
 
 In you're **.env** file replace
-From | To
---- | ---
-`DB_CONNECTION=mysql` | `DB_CONNECTION=sqlite`
-`DB_DATABASE=laravel` | `DB_DATABASE=Path_To_Your_Sqlite_File`
+
+| From | To |
+| --- | --- |
+| `DB_CONNECTION=mysql` | `DB_CONNECTION=sqlite` |
+| `DB_DATABASE=laravel` | `DB_DATABASE=Path_To_Your_Sqlite_File` |
 
 e.g `DB_DATABASE=/home/me/my_laravel_app/database/database.sqlite`
 
