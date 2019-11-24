@@ -17,7 +17,7 @@
 
     <div class="content">
         <div class="title m-b-md">
-            Setup your password
+            Change your password
         </div>
 
         <form method="post" action="{{ route('reDefinePasswordPost') }}">

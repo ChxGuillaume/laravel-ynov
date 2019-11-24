@@ -29,7 +29,7 @@
 
     <div class="content">
         <div class="title m-b-md">
-            Laravel Ynov
+            Laravel Ynov / JWT
         </div>
 
         <div class="links">
