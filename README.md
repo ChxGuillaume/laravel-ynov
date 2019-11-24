@@ -24,7 +24,7 @@ Generate the application secret key:
 
 > php artisan key:generate
 
-Generate jwt secret key:
+Generate the jwt secret key:
 
 > php artisan jwt:secret
 
