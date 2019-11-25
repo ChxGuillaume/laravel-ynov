@@ -9,27 +9,28 @@ use App\User;
 class LiveAuth extends Controller
 {
 
-    public static function Login() {
+    public function login() {
         return Socialite::driver('live')->redirect();
     }
 
-    public static function Authentification()
+    public function authentification()
     {
         try {
-            $user = Socialite::with('live')->user();
+            $liveUser = Socialite::with('live')->user();
         } catch (\Exception $e) {
             return redirect()->route('home');
         }
 
-        if (User::where('live_id', $user->id)->count() > 0) {
-            $loggedUser = User::where('live_id', $user->id)->first();
-        } else if (preg_match('/.*\..*@ynov\.com/', $user->email)) {
-            $loggedUser = User::create([
-                'live_id' => $user->id,
-                'name' => $user->name,
-                'email' => $user->email,
-            ]);
-        } else return redirect()->route('home');
+        if (!preg_match('/.*\..*@ynov\.com/', $liveUser->email)) {
+            return redirect()->route('home');
+        }
+
+        $loggedUser = User::firstOrCreate([
+            'live_id' => $liveUser->id
+        ], [
+            'name' => $liveUser->name,
+            'email' => $liveUser->email,
+        ]);
 
         auth()->login($loggedUser, true);
 

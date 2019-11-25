@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class Auth extends Controller
 {
 
-    public static function Disconnect()
+    public static function disconnect()
     {
         auth()->logout();
 

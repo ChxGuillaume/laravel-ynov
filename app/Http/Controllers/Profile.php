@@ -16,7 +16,7 @@ class Profile extends Controller
      *
      * @return Factory|RedirectResponse|View
      */
-    public static function Show() {
+    public static function show() {
         if (!auth()->user()) return redirect()->route('home');
 
         return view('profile', ['user' => auth()->user()]);
@@ -27,7 +27,7 @@ class Profile extends Controller
      *
      * @return Factory|RedirectResponse|View
      */
-    public static function DefinePassword() {
+    public static function definePassword() {
         if (!auth()->user()) return redirect()->route('home');
         if (auth()->user()->getAuthPassword()) return redirect()->route('profile');
 
@@ -40,7 +40,7 @@ class Profile extends Controller
      * @param Request $request
      * @return Factory|RedirectResponse|View
      */
-    public static function DefinePasswordPost(Request $request) {
+    public static function definePasswordPost(Request $request) {
         if (!auth()->user()) return redirect()->route('home');
         if (auth()->user()->getAuthPassword()) return redirect()->route('profile');
 
@@ -61,7 +61,7 @@ class Profile extends Controller
      *
      * @return Factory|RedirectResponse|View
      */
-    public static function ReDefinePassword() {
+    public static function reDefinePassword() {
         if (!auth()->user()) return redirect()->route('home');
 
         return view('redefine-password', ['user' => auth()->user()]);
@@ -73,7 +73,7 @@ class Profile extends Controller
      * @param Request $request
      * @return Factory|RedirectResponse|View
      */
-    public static function ReDefinePasswordPost(Request $request) {
+    public static function reDefinePasswordPost(Request $request) {
         if (!auth()->user()) return redirect()->route('home');
 
         $oldPassword = $request->get('oldPassword');

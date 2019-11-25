@@ -28,14 +28,14 @@ Route::get('/', function () {
 //    return response(null, 204);
 //});
 
-Route::get('/login-live', 'LiveAuth@Login')->name('login-live');
-Route::get('/auth-live', 'LiveAuth@Authentification');
+Route::get('/login-live', 'LiveAuth@login')->name('login-live');
+Route::get('/auth-live', 'LiveAuth@authentification');
 
-Route::get('/profile', 'Profile@Show')->name('profile');
-Route::get('/profile/define-password', 'Profile@DefinePassword')->name('definePassword');
-Route::post('/profile/define-password', 'Profile@DefinePasswordPost')->name('definePasswordPost');
-Route::get('/profile/redefine-password', 'Profile@ReDefinePassword')->name('reDefinePassword');
-Route::post('/profile/redefine-password', 'Profile@ReDefinePasswordPost')->name('reDefinePasswordPost');
+Route::get('/profile', 'Profile@show')->name('profile');
+Route::get('/profile/define-password', 'Profile@definePassword')->name('definePassword');
+Route::post('/profile/define-password', 'Profile@definePasswordPost')->name('definePasswordPost');
+Route::get('/profile/redefine-password', 'Profile@reDefinePassword')->name('reDefinePassword');
+Route::post('/profile/redefine-password', 'Profile@reDefinePasswordPost')->name('reDefinePasswordPost');
 
-Route::get('/disconnect', 'Auth@Disconnect')->name('disconnect');
+Route::get('/disconnect', 'Auth@disconnect')->name('disconnect');
 

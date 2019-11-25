@@ -16,7 +16,7 @@ class APIController extends Controller
      * Login a user
      *
      * @param Request $request
-     * @return JsonResponse
+     * @return array
      */
     public function login(Request $request)
     {
@@ -24,17 +24,17 @@ class APIController extends Controller
         $token = null;
 
         try {
-            if (!$token = JWTAuth::attempt($input)) {
-                return response()->json([
+            if (!$token = auth('api')->attempt($input)) {
+                return [
                     'success' => false,
                     'message' => 'Invalid Email or Password',
-                ], 401);
+                ];
             }
         } catch (\Exception $e) {
-            return response()->json([
+            return [
                 'success' => false,
                 'message' => 'Invalid Request',
-            ], 400);
+            ];
         }
 
         return $this->respondWithToken($token);
@@ -47,36 +47,36 @@ class APIController extends Controller
      */
     public function me()
     {
-        return response()->json(auth('api')->user());
+        return (auth('api')->user());
     }
 
     /**
      * Invalid a user token (logout)
      *
      * @param Request $request
-     * @return JsonResponse
+     * @return array
      */
     public function logout(Request $request)
     {
         try {
-            JWTAuth::invalidate($request->token);
+            auth('api')->logout();
 
-            return response()->json([
+            return [
                 'success' => true,
                 'message' => 'User logged out successfully'
-            ]);
+            ];
         } catch (JWTException $exception) {
-            return response()->json([
+            return [
                 'success' => false,
                 'message' => 'Sorry, the user cannot be logged out'
-            ], 500);
+            ];
         }
     }
 
     /**
      * Refresh a token.
      *
-     * @return JsonResponse
+     * @return array
      */
     public function refresh()
     {
@@ -86,17 +86,16 @@ class APIController extends Controller
     /**
      * Get the token array structure.
      *
-     * @param  string $token
-     *
-     * @return JsonResponse
+     * @param string $token
+     * @return array
      */
     protected function respondWithToken($token)
     {
-        return response()->json([
+        return [
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => auth('api')->factory()->getTTL() * 60
-        ]);
+        ];
     }
 
 }
